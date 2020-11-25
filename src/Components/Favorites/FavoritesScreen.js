@@ -2,15 +2,15 @@ import React from 'react'
 import {Image,View,Text,StyleSheet} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const CategoryScreen = ({navigation,route: {params: {email, password}}}) => {
+const FavoritesScreen = ({navigation,route: {params: {email, password}}}) => {
     console.log("DATOS SIN LOGIN",email);
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}> Task To Do</Text>
+            <Text style={styles.title}>Task Complete</Text>
         </SafeAreaView>
     )
 }
-export default CategoryScreen;
+export default FavoritesScreen;
 
 const styles = StyleSheet.create({
     container: {

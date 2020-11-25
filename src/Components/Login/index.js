@@ -1,21 +1,30 @@
-import React , { useCallback, useState } from 'react'
+import React , { useCallback, useContext, useState } from 'react'
 import {Button,View,StyleSheet,Text,Alert,Pressable} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { AppContext } from '../../../App';
 
-const Pantalla = ({ navigation }) => {
+const Pantalla = ({ navigation ,route }) => {
     const [email, onChangeEmail] = useState('');
+    const {autentificacion, setAutentificacion} = useContext(AppContext);
     const [password, onChangePassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const callback = useCallback(() => handleClick(email,password),[email,password]);
     
     handleClick = (email,password) => {
-    console.log('Se hizo click',email,password);
-    navigation.navigate('Category',{email,password});
+        setAutentificacion(true)
+        console.log('Se hizo click',email,password);
+        navigation.navigate('Category',{email, password, autentificacion: true});
     }
 
     goRegister = () => {
-        navigation.navigate('Register');
+        setAutentificacion(true);
+        navigation.navigate('Register',{autentificacion: true});
+    }
+
+    goPage = () => {
+        setAutentificacion(false);
+        navigation.navigate('Category',{email: "traidor",autentificacion: false});
     }
 
     return (
@@ -37,17 +46,24 @@ const Pantalla = ({ navigation }) => {
                     style={styles.input}
                     onChangeText={(text) => onChangePassword(text)}
                     value={password}
+                    secureTextEntry={true}
                 />
             </View>
             <View style={styles.row}>
                 <Pressable style={styles.button} onPressIn={callback}>
-                    <Text style={styles.text}>Accept</Text>
+                    <Text style={styles.textButton}>Accept</Text>
                 </Pressable>
             </View>
             <View style={styles.row}>
                 <Text style={styles.text}>Dont have Account?</Text>
-                <Pressable style={styles.button} onPress={goRegister}>
-                    <Text style={styles.text}>Sign In</Text>
+                <Pressable style={styles.button2} onPress={goRegister}>
+                    <Text style={styles.textButton}>Sign In</Text>
+                </Pressable>
+            </View>
+            <View style={styles.row}>
+                <Text style={styles.text}>Login without account</Text>
+                <Pressable style={styles.button3} onPress={goPage}>
+                    <Text style={styles.textButton}>Go</Text>
                 </Pressable>
             </View>
             
@@ -66,7 +82,8 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
-        fontSize: 20
+        fontSize: 20,
+        marginTop: 50,
     },
     text: {
         color: "white",
@@ -94,5 +111,26 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 10,
         
-      }
+      },
+      button2: {
+        backgroundColor: 'green',
+        borderRadius: 8,
+        justifyContent: "center",
+        marginTop: 20,
+        marginLeft: 20
+        
+      },
+      button3: {
+        backgroundColor: 'blue',
+        borderRadius: 8,
+        justifyContent: "center",
+        marginTop: 20,
+        marginLeft: 20
+        
+      },
+      textButton: {
+        color: "white",
+        fontSize: 15,
+        margin: 10,
+    }
 })

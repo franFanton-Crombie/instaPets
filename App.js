@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from './src/Components/Login';
@@ -8,8 +8,13 @@ import Colors from './src/res/colors';
 import Register from './src/Components/Register';
 
 const Stack = createStackNavigator();
+export const AppContext = React.createContext();
+
 const App = () => {
+  const [autentificacion ,setAutentificacion] = useState();
+  
   return (
+    <AppContext.Provider value={{autentificacion, setAutentificacion}}>
       <NavigationContainer>
         <Stack.Navigator
         screenOptions={{
@@ -21,12 +26,13 @@ const App = () => {
           headerTintColor: Colors.white,
           headerShown: false
         }}>
-          <Stack.Screen name="Pantalla" component={ Login }/>
-          <Stack.Screen name="Category" component={ Category }/>
-          <Stack.Screen name="Profile" component={ Profile }/>
-          <Stack.Screen name="Register" component={ Register } />
+          <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
+          <Stack.Screen initialParams={{autentificacion}} name="Category" component={ Category }/>
+          <Stack.Screen initialParams={{autentificacion}} name="Profile" component={ Profile }/>
+          <Stack.Screen initialParams={{autentificacion}} name="Register" component={ Register } />
         </Stack.Navigator>    
       </NavigationContainer>
+    </AppContext.Provider>
   );
 };
 
