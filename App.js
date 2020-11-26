@@ -7,6 +7,8 @@ import Profile from './src/Components/Profile';
 import Colors from './src/res/colors';
 import Register from './src/Components/Register';
 
+import Todo from './src/Components/Todo/Todo';
+
 const Stack = createStackNavigator();
 export const AppContext = React.createContext();
 
@@ -26,6 +28,7 @@ const App = () => {
           headerTintColor: Colors.white,
           headerShown: false
         }}>
+          <Stack.Screen initialParams={{autentificacion}} name="Todo" component={ Todo } />
           <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
           <Stack.Screen initialParams={{autentificacion}} name="Category" component={ Category }/>
           <Stack.Screen initialParams={{autentificacion}} name="Profile" component={ Profile }/>
