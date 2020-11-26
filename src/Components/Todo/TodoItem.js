@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle:'dashed',
         borderRadius: 10,
+        flex: 1
     },
     row:{
         flexDirection:"row",
