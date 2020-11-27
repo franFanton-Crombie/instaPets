@@ -6,6 +6,7 @@ import Colors from '../../res/colors';
 import Category from '../Category/';
 import CategoryScreen from '../Category/CategoryScreen';
 import ProfileScreen from './FavoritesScreen';
+import TodoScreen from '../Todo/TodoScreen';
 
 const Tabs = createBottomTabNavigator();
 const Favorites = ({navigation,route}) => {
@@ -25,6 +26,19 @@ const Favorites = ({navigation,route}) => {
                     }
                 }
             }>
+                <Tabs.Screen
+                    name="To Do"
+                    component={TodoScreen}
+                    initialParams={route.params}
+                    options={{
+                        tabBarVisible: true,
+                        tabBarIcon: ({ size , color }) => (
+                        <Image 
+                            style={{tintColor:color , width: size , height: size}}
+                            source={require('../../assets/dinero.png')}/>
+                        )
+                    }}
+                />
                 <Tabs.Screen
                     name="To Do"
                     component={CategoryScreen}

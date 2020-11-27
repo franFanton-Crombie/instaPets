@@ -7,6 +7,7 @@ import CategoryScreen from './CategoryScreen';
 import ProfileScreen from '../Profile/ProfileScreen';
 import FavoritesScreen from '../Favorites/FavoritesScreen';
 import { AppContext } from '../../../App';
+import TodoScreen from '../Todo/TodoScreen';
 
 const Tabs = createBottomTabNavigator();
 const Category = ({navigation,route}) => {
@@ -18,20 +19,36 @@ const Category = ({navigation,route}) => {
         <Tabs.Navigator
                 tabBarOptions={{
                     tintColor: "#fefefe",
+                    activeTintColor: 'white',
+                    inactiveTintColor: 'white',
                     style: {
-                        backgroundColor: Colors.blackPearl
+                        backgroundColor: 'coral',
                     }
                 }
             }>
                 <Tabs.Screen
-                    name="To do"
+                    name="To Do"
+                    backgroundColor='white'
+                    component={TodoScreen}
+                    initialParams={route.params}
+                    options={{
+                        tabBarVisible: true,
+                        tabBarIcon: ({ size , color }) => (
+                        <Image 
+                            style={{tintColor:'white' , width: size , height: size}}
+                            source={require('../../assets/dinero.png')}/>
+                        )
+                    }}
+                />
+                <Tabs.Screen
+                    name="Category"
                     component={CategoryScreen}
                     initialParams={route.params}
                     options={{
                         tabBarVisible: true,
                         tabBarIcon: ({ size , color }) => (
                         <Image 
-                            style={{tintColor:color , width: size , height: size}}
+                            style={{tintColor:'white' , width: size , height: size}}
                             source={require('../../assets/dinero.png')}/>
                         )
                     }}
@@ -44,7 +61,7 @@ const Category = ({navigation,route}) => {
                         options={{
                             tabBarIcon: ({ size , color }) => (
                             <Image 
-                                style={{tintColor:color , width: size , height: size}}
+                                style={{tintColor:'white' , width: size , height: size}}
                                 source={require('../../assets/equipo.png')}/>
                             )
                         }}
@@ -57,7 +74,7 @@ const Category = ({navigation,route}) => {
                     options={{
                         tabBarIcon: ({ size , color }) => (
                         <Image 
-                            style={{tintColor:color , width: size , height: size}}
+                            style={{tintColor:'white' , width: size , height: size}}
                             source={require('../../assets/star.png')}/>
                         )
                     }}

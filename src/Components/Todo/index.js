@@ -1,16 +1,14 @@
 import React from 'react'
-import {Image,View,Text,StyleSheet} from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {Image,StyleSheet} from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Colors from '../../res/colors';
-import Category from '../Category/';
-import CategoryScreen from '../Category/CategoryScreen';
-import ProfileScreen from './ProfileScreen';
-import FavoritesScreen from '../Favorites/FavoritesScreen';
-import TodoScreen from '../Todo/TodoScreen';
+import CategoryScreen from './../Category/CategoryScreen';
+import ProfileScreen from '../../Profile/ProfileScreen';
+import FavoritesScreen from '../../Favorites/FavoritesScreen';
+import TodoScreen from './TodoScreen';
 
 const Tabs = createBottomTabNavigator();
-const Profile = ({navigation,route}) => {
+const Todo = ({navigation,route}) => {
     const name = route.params.name;
     const surname = route.params.surname;
     const email = route.params.email;
