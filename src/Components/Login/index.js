@@ -55,7 +55,7 @@ const Pantalla = ({ navigation ,route }) => {
                 </Pressable>
             </View>
             <View style={styles.row}>
-                <Text style={styles.text}>Dont have Account?</Text>
+                <Text style={styles.text2}>Dont have Account?</Text>
                 <Pressable style={styles.button2} onPress={goRegister}>
                     <Text style={styles.textButton}>Sign In</Text>
                 </Pressable>
@@ -76,18 +76,24 @@ export default Pantalla;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "black"
+        backgroundColor: "white"
     },
     title: {
-        color: "white",
+        color: "coral",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 20,
-        marginTop: 50,
+        marginTop: 250,
     },
     text: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
+        marginLeft: 10,
+        fontSize: 15,
+    },
+    text2: {
+        color: "coral",
+        marginTop: 60,
         marginLeft: 10,
         fontSize: 15,
     },
@@ -98,7 +104,7 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         width: 300,
-        borderColor: 'gray',
+        borderColor: 'coral',
         borderWidth: 1,
         marginTop: 20,
         marginLeft: 10,
@@ -109,19 +115,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(91,183,236,0.8)',
         borderRadius: 8,
         justifyContent: "center",
-        marginTop: 10,
+        marginTop: 30,
         
       },
       button2: {
-        backgroundColor: 'green',
+        backgroundColor: '#BCE197',
         borderRadius: 8,
         justifyContent: "center",
-        marginTop: 20,
+        marginTop: 50,
         marginLeft: 20
         
       },
       button3: {
-        backgroundColor: 'blue',
+        backgroundColor: '#FF2929',
         borderRadius: 8,
         justifyContent: "center",
         marginTop: 20,

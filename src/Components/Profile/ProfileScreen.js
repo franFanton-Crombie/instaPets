@@ -6,8 +6,8 @@ const ProfileScreen = ({navigation,route: {params: {name,surname,email,password,
     
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text style={styles.title}> Profile</Text>
+            <View style={styles.header}>
+                <Text style={styles.title}>Complete</Text>
             </View>
             <View style={styles.row}>
                 <Text style={styles.text}>Name: </Text>
@@ -41,18 +41,21 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "black"
+        backgroundColor: "white"
     },
-    title: {
-        color: "white",
-        fontWeight: "bold",
+    header:{
+        height: 80,
+        paddingTop: 38,
+        backgroundColor: 'coral'
+    },
+    title:{
         textAlign: "center",
-        fontSize: 40,
-        marginTop: 50,
-        marginBottom:30
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     text: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
         marginLeft: 10,
         fontSize: 25
@@ -68,6 +71,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 10,
         borderRadius: 8,
-        backgroundColor: "white"
+        backgroundColor: "coral"
       },
 })
