@@ -10,7 +10,7 @@ const Pantalla = ({ navigation ,route }) => {
     const [password, onChangePassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const callback = useCallback(() => handleClick(email,password),[email,password]);
-    
+
     handleClick = (email,password) => {
         setAutentificacion(true)
         console.log('Se hizo click',email,password);
@@ -32,6 +32,7 @@ const Pantalla = ({ navigation ,route }) => {
             <View>
                 <Text style={styles.title}>Welcome!!!</Text>
             </View>
+            
             <View style={styles.row}>
                 <Text style={styles.text}>Account: </Text>
                 <TextInput
@@ -40,6 +41,7 @@ const Pantalla = ({ navigation ,route }) => {
                     value={email}
                 />
             </View>
+
             <View style={styles.row}>
                 <Text style={styles.text}>Password: </Text>
                 <TextInput
