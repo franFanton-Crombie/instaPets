@@ -8,7 +8,6 @@ import Colors from './src/res/colors';
 import Register from './src/Components/Register';
 
 import Todo from './src/Components/Todo/TodoScreen';
-import AsyncStorageExample from '';
 
 const Stack = createStackNavigator();
 export const AppContext = React.createContext();
@@ -16,9 +15,27 @@ export const AppContext = React.createContext();
 const App = () => {
   const [autentificacion ,setAutentificacion] = useState();
   
-  return ( 
-    <AsyncStorageExample />
-  
+  return (
+    <AppContext.Provider value={{autentificacion, setAutentificacion}}>
+      <NavigationContainer>
+        <Stack.Navigator
+        screenOptions={{
+          headerShown: true,
+          headerStyle: {
+              backgroundColor: Colors.blackPearl,
+              shadowColor: Colors.blackPearl,
+          },
+          headerTintColor: Colors.white,
+          headerShown: false
+        }}>
+          <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
+          <Stack.Screen initialParams={{autentificacion}} name="Todo" component={ Todo } />
+          <Stack.Screen initialParams={{autentificacion}} name="Category" component={ Category }/>
+          <Stack.Screen initialParams={{autentificacion}} name="Profile" component={ Profile }/>
+          <Stack.Screen initialParams={{autentificacion}} name="Register" component={ Register } />
+        </Stack.Navigator>    
+      </NavigationContainer>
+    </AppContext.Provider>
   );
 };
 
