@@ -186,10 +186,10 @@ export default Register;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "black"
+        backgroundColor: "white"
     },
     title: {
-        color: "white",
+        color: "coral",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 20,
@@ -197,27 +197,27 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     text: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
         marginLeft: 10,
         fontSize: 15,
     },
     text2: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
         marginLeft: 10,
         marginRight: 19,
         fontSize: 15,
     },
     text3: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
         marginLeft: 10,
         marginRight: 26,
         fontSize: 15,
     },
     text4: {
-        color: "white",
+        color: "coral",
         marginTop: 28,
         marginLeft: 22,
         marginRight: 26,
