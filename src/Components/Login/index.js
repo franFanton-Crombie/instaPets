@@ -16,6 +16,7 @@ const Pantalla = ({ navigation }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const callback = useCallback(() => handleClick(email,password),[email,password]);
 
+<<<<<<< HEAD
     useEffect(() => {
         readData()
     }, [])
@@ -61,6 +62,8 @@ const Pantalla = ({ navigation }) => {
     const onChangeEmail = email => setEmail(email)
     const onChangePassword = password => setPassword(password)
     
+=======
+>>>>>>> 9bd15159dc593935b91f8f4f673420415a1e26c6
     handleClick = (email,password) => {
         setAutentificacion(true)
         console.log('Se hizo click',email,password);
@@ -85,6 +88,7 @@ const Pantalla = ({ navigation }) => {
             <View>
                 <Text style={styles.title}>Welcome!!!</Text>
             </View>
+            
             <View style={styles.row}>
                 <Text style={styles.text}>Account: </Text>
                 <TextInput
@@ -95,6 +99,7 @@ const Pantalla = ({ navigation }) => {
                     value={email}
                 />
             </View>
+
             <View style={styles.row}>
                 <Text style={styles.text}>Password: </Text>
                 <TextInput
