@@ -6,8 +6,9 @@ import Category from './src/Components/Category';
 import Profile from './src/Components/Profile';
 import Colors from './src/res/colors';
 import Register from './src/Components/Register';
-
 import Todo from './src/Components/Todo/TodoScreen';
+import Async from './src/Components/Async/AsynScreen';
+import ListAsync from './src/Components/Async/List';
 
 const Stack = createStackNavigator();
 export const AppContext = React.createContext();
@@ -29,6 +30,11 @@ const App = () => {
           headerShown: false
         }}>
           <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
+
+          <Stack.Screen initialParams={{autentificacion}} name="ListAsync" component={ ListAsync } />
+
+          <Stack.Screen initialParams={{autentificacion}} name="Async" component={ Async } />
+
           <Stack.Screen initialParams={{autentificacion}} name="Todo" component={ Todo } />
           <Stack.Screen initialParams={{autentificacion}} name="Category" component={ Category }/>
           <Stack.Screen initialParams={{autentificacion}} name="Profile" component={ Profile }/>

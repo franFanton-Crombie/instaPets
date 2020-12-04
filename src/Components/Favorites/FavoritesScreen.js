@@ -6,7 +6,7 @@ const FavoritesScreen = ({navigation,route: {params: {email, password}}}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>Complete</Text>
+                <Text style={styles.title}>List of Register</Text>
             </View>
         </SafeAreaView>
     )

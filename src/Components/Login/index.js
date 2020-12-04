@@ -1,19 +1,72 @@
-import React , { useCallback, useContext, useState } from 'react'
+import React , { useCallback, useContext, useState, useEffect } from 'react'
 import {Button,View,StyleSheet,Text,Alert,Pressable} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { AppContext } from '../../../App';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const Pantalla = ({ navigation ,route }) => {
-    const [email, onChangeEmail] = useState('');
+const STORAGE_KEY_EMAIL = '@save_email'
+const STORAGE_KEY_PASSWORD = '@save_password'
+
+const Pantalla = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const {autentificacion, setAutentificacion} = useContext(AppContext);
-    const [password, onChangePassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const callback = useCallback(() => handleClick(email,password),[email,password]);
+
+    useEffect(() => {
+        readData()
+    }, [])
+    
+    // read data
+    const readData = async () => {
+        try {
+            const email = await AsyncStorage.getItem(STORAGE_KEY_EMAIL)
+            const password = await AsyncStorage.getItem(STORAGE_KEY_PASSWORD)
+            if (email !== null) {
+                setEmail(email)
+            }
+            if (password !== null) {
+                setPassword(password)
+            }
+        } catch (e) {
+            alert('Failed to fetch the data from storage')
+        }
+    }
+    
+    // save data
+    const saveData = async () => {
+        try {
+            await AsyncStorage.setItem(STORAGE_KEY_EMAIL, email)
+            setEmail(email)
+            await AsyncStorage.setItem(STORAGE_KEY_PASSWORD, password)
+            setEmail(password)
+            alert('Data successfully saved')
+        } catch (e) {
+            alert('Failed to save the data to the storage')
+        }
+    }
+    
+    const clearStorage = async () => {
+        try {
+        await AsyncStorage.clear()
+        alert('Storage successfully cleared!')
+        } catch (e) {
+        alert('Failed to clear the async storage.')
+        }
+    }
+
+    const onChangeEmail = email => setEmail(email)
+    const onChangePassword = password => setPassword(password)
     
     handleClick = (email,password) => {
         setAutentificacion(true)
         console.log('Se hizo click',email,password);
+        if (!email) return
+        saveData(email)
+        setEmail('')
         navigation.navigate('Category',{email, password, autentificacion: true});
     }
 
@@ -36,7 +89,9 @@ const Pantalla = ({ navigation ,route }) => {
                 <Text style={styles.text}>Account: </Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text) => onChangeEmail(text)}
+                    //onChangeText={(text) => onChangeEmail(text)}
+                    placeholder="Insert Email"
+                    onChangeText={onChangeEmail}
                     value={email}
                 />
             </View>
@@ -44,7 +99,8 @@ const Pantalla = ({ navigation ,route }) => {
                 <Text style={styles.text}>Password: </Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text) => onChangePassword(text)}
+                    placeholder="Insert Password"
+                    onChangeText={onChangePassword}
                     value={password}
                     secureTextEntry={true}
                 />
