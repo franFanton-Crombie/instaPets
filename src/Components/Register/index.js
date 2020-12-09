@@ -4,102 +4,18 @@ import { TextInput } from 'react-native-gesture-handler'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import reducer from './reducer'
 import validate from './validate'
-import AsyncStorage from '@react-native-community/async-storage'
-
-const STORAGE_KEY_NAME = '@save_name'
-const STORAGE_KEY_SURNAME = '@save_surname'
-const STORAGE_KEY_EMAIL = '@save_email'
-const STORAGE_KEY_PASSWORD = '@save_password'
-const STORAGE_KEY_ADDRESS = '@save_address'
-const STORAGE_KEY_CEL_CARACTER = '@save_cel_caracter'
-const STORAGE_KEY_NUMBER = '@save_number'
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Register = ({navigation,route}) => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [adress, setAddress] = useState('');
-    const [cel_caracter, setCaracter] = useState('');
-    const [number, setNumber] = useState('');
 
-    useEffect(() => {
-        readData()
-    }, [])
+    const [name,setName] = useState('');
+    const [surname,setSurname] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [adress,setAdress] = useState('');
+    const [phone_prefix,setPhonePrefix] = useState('');
+    const [phone,setPhone] = useState('');
     
-    // read data
-    const readData = async () => {
-        try {
-            const name = await AsyncStorage.getItem(STORAGE_KEY_NAME)
-            const surname = await AsyncStorage.getItem(STORAGE_KEY_SURNAME)
-            const email = await AsyncStorage.getItem(STORAGE_KEY_EMAIL)
-            const password = await AsyncStorage.getItem(STORAGE_KEY_PASSWORD)
-            const adress = await AsyncStorage.getItem(STORAGE_KEY_ADDRESS)
-            const cel_caracter = await AsyncStorage.getItem(STORAGE_KEY_CEL_CARACTER)
-            const number = await AsyncStorage.getItem(STORAGE_KEY_NUMBER)
-            
-            if (name !== null) {
-                setName(name)
-            }
-            if (surname !== null) {
-                setSurname(surname)
-            }
-            if (email !== null) {
-                setEmail(email)
-            }
-            if (password !== null) {
-                setPassword(password)
-            }
-            if (adress !== null) {
-                setAddress(adress)
-            }
-            if (cel_caracter !== null) {
-                setCaracter(cel_caracter)
-            }
-            if (number !== null) {
-                setNumber(number)
-            }
-        } catch (e) {
-            alert('Failed to fetch the data from storage')
-        }
-    }
-    
-    // save data
-    const saveData = async () => {
-        try {
-            await AsyncStorage.setItem(STORAGE_KEY_EMAIL, email)
-            setEmail(email)
-            await AsyncStorage.setItem(STORAGE_KEY_SURNAME, surname)
-            setSurname(surname)
-            await AsyncStorage.setItem(STORAGE_KEY_EMAIL, email)
-            setEmail(email)
-            await AsyncStorage.setItem(STORAGE_KEY_PASSWORD, password)
-            setPassword(password)
-            await AsyncStorage.setItem(STORAGE_KEY_ADDRESS, adress)
-            setAddress(adress)
-            await AsyncStorage.setItem(STORAGE_KEY_CEL_CARACTER, caracter)
-            setCaracter(caracter)
-            await AsyncStorage.setItem(STORAGE_KEY_NUMBER, number)
-            setNumber(number)
-            alert('Data successfully saved')
-        } catch (e) {
-            alert('Failed to save the data to the storage')
-        }
-    }
-    
-    const clearStorage = async () => {
-        try {
-        await AsyncStorage.clear()
-        alert('Storage successfully cleared!')
-        } catch (e) {
-        alert('Failed to clear the async storage.')
-        }
-    }
-
-    const onChangeEmail = email => setEmail(email)
-    const onChangePassword = password => setPassword(password)
-
     const [user, dispatch] = useReducer(reducer,{
         name: '',
         surname: '',
@@ -108,8 +24,8 @@ const Register = ({navigation,route}) => {
         adress: '',
         phone_prefix: '',
         phone: ''
-      });
-
+    });
+ 
     /*const callback = useCallback(() => handleClick(user.name,user.surname,user.email,user.password,user.adress),
                                         [user.name,user.surname,user.email,user.password,user.adress]);
 
@@ -117,7 +33,45 @@ const Register = ({navigation,route}) => {
         console.log('Datos Register: ',name,surname,email,password,adress);
         navigation.navigate('Profile',{name,surname,email,password,adress});
         }*/
+    buttonPressed = () => {
+        console.log('ENTRO FUNCION')
+        console.log('NAME',user.name)
+        console.log('SURNAME',user.surname)
+        console.log('EMAIL',user.email)
+        const arrayData = [];
+        if(user.name && user.surname && user.email && user.password && user.adress && user.phone && user.phone_prefix){
+            const data = {
+                name: user.name,
+                surname: user.surname,
+                email: user.email,
+                password: user.password,
+                adress: user.adress,
+                phone: user.phone,
+                phone_prefix: user.phone_prefix
+            }
+            console.log('Datos: ',data);
+            arrayData.push(data);
+            try{
+                AsyncStorage.getItem('database_register').then((value) => {
+                    if(value !== null){
+                        const d = JSON.parse(value);
+                        d.push(data)
+                        AsyncStorage.setItem('database_register', JSON.stringify(d))
+                        navigation.navigate('Todo')
+                    } else {
+                        AsyncStorage.setItem('database_register', JSON.stringify(arrayData))
+                        navigation.navigate('Todo')
 
+                    }
+                })
+            } catch(err){
+                console.log(err)
+            }
+        }
+        else{
+            alert('Error!!!')
+        }
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -253,12 +207,14 @@ const Register = ({navigation,route}) => {
                 <Pressable style={styles.button} 
                             //onPressIn={callback}
                             disabled={!validate(user)}
+                            onPress={() => this.buttonPressed()}
+                            /*
                             onPress={() => {
                                 navigation.navigate('Profile',{
                                   ...route.params,
                                   ...{...user, phone: `${user.phone_prefix}${user.phone}`}
                                 })
-                              }}
+                              }}*/
                             >
                     <Text style={styles.textButton}>Confirm</Text>
                 </Pressable>

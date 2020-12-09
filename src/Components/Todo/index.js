@@ -3,8 +3,8 @@ import {Image,StyleSheet} from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Colors from '../../res/colors';
 import CategoryScreen from './../Category/CategoryScreen';
-import ProfileScreen from '../../Profile/ProfileScreen';
-import FavoritesScreen from '../../Favorites/FavoritesScreen';
+import ProfileScreen from '../Profile/ProfileScreen';
+import FavoritesScreen from '../Favorites/FavoritesScreen';
 import TodoScreen from './TodoScreen';
 
 const Tabs = createBottomTabNavigator();
