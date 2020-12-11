@@ -29,9 +29,12 @@ export default class ListUser extends Component {
                 return(
                     <View style={styles.dataList} key={i}>
                         <View style={styles.row}>
-                            <Text>Name: {data.name}</Text>
-                            <Text>Surname: {data.surname}</Text>
-                            <Text>Email: {data.email}</Text>
+                            <Text style={styles.titleCont}>Name: </Text>
+                            <Text>{data.name}  </Text>
+                            <Text style={styles.titleCont}>Surname: </Text>
+                            <Text>{data.surname}  </Text>
+                            <Text style={styles.titleCont}>Email: </Text>
+                            <Text>{data.email}</Text>
                         </View>
                     </View>
                 )
@@ -60,5 +63,9 @@ const styles = StyleSheet.create({
     },
     row:{
         flexDirection:'row'
+    },
+    titleCont: {
+        fontStyle: "italic",
+        fontWeight: "bold"
     }
 })

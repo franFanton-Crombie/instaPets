@@ -15,9 +15,10 @@ const CategoryScreen = ({navigation,route: {params: {email, password}}}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>My Categories</Text>
+                <Text style={styles.title}>List of Person</Text>
+                <Image style={{tintColor:'coral' , width: 100 , height: 100 , marginTop: 20 , marginLeft: 150}}
+                            source={require('../../assets/call-center.png')}/>
             </View>
-            <Text style={styles.title2}>List of Person</Text>
             <ListUserScreen />
         </SafeAreaView>
     )
