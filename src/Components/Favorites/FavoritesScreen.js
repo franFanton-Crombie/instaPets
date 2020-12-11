@@ -1,16 +1,20 @@
 import React from 'react'
-import {Image,View,Text,StyleSheet,TextInput} from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+    SafeAreaView,
+    View,
+    StyleSheet,
+    Text,
+    ActivityIndicator,
+    TouchableOpacity} from 'react-native';
+import HomeScreen from './HomeScreen';
 
 const FavoritesScreen = ({navigation,route: {params: {email, password}}}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.title}>In progress</Text>
+                <Text style={styles.title}>Search Person</Text>
             </View>
-            <View>
-                <Text>ASDASASD</Text>
-            </View>
+            <HomeScreen />
         </SafeAreaView>
     )
 }

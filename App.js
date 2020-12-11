@@ -10,7 +10,7 @@ import Todo from './src/Components/Todo/TodoScreen';
 import Async from './src/Components/Async/AsynScreen';
 import ListAsync from './src/Components/Async/List';
 import ListUser from './src/Components/Register/ListUserScreen';
-
+import FavoritesScreen from './src/Components/Favorites/FavoritesScreen';
 const Stack = createStackNavigator();
 export const AppContext = React.createContext();
 
@@ -30,9 +30,12 @@ const App = () => {
           headerTintColor: Colors.white,
           headerShown: false
         }}>
+
           <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
           <Stack.Screen initialParams={{autentificacion}} name="ListUser" component={ ListUser } />
           <Stack.Screen initialParams={{autentificacion}} name="Register" component={ Register } />        
+          <Stack.Screen initialParams={{autentificacion}} name="FavoritesScreen" component={ FavoritesScreen } />
+
           <Stack.Screen initialParams={{autentificacion}} name="ListAsync" component={ ListAsync } />
           <Stack.Screen initialParams={{autentificacion}} name="Async" component={ Async } />
           
