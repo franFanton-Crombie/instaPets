@@ -61,7 +61,6 @@ const Register = ({navigation,route}) => {
                     } else {
                         AsyncStorage.setItem('database_register', JSON.stringify(arrayData))
                         navigation.navigate('Todo')
-
                     }
                 })
             } catch(err){
