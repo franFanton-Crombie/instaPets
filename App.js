@@ -31,8 +31,9 @@ const App = () => {
           headerTintColor: Colors.white,
           headerShown: false
         }}>
-          <Stack.Screen initialParams={{autentificacion}} name="TodoComplete" component={ TodoComplete } />
           <Stack.Screen initialParams={{autentificacion}} name="Pantalla" component={ Login } />
+
+          <Stack.Screen initialParams={{autentificacion}} name="TodoComplete" component={ TodoComplete } />
           <Stack.Screen initialParams={{autentificacion}} name="ListUser" component={ ListUser } />
           <Stack.Screen initialParams={{autentificacion}} name="Register" component={ Register } />        
           <Stack.Screen initialParams={{autentificacion}} name="FavoritesScreen" component={ FavoritesScreen } />

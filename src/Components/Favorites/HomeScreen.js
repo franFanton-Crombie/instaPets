@@ -10,7 +10,6 @@ import {
   ApplicationProvider,
   Input
 } from 'react-native';
-import filter from 'lodash.filter';
 import { TextInput } from 'react-native-gesture-handler';
 
 const mockData = [
